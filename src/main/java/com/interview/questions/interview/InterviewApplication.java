@@ -1,7 +1,8 @@
 package com.interview.questions.interview;
 
-import com.interview.questions.interview.common.rest.support.QuoteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.interview.questions.interview.common.soap.support.WeatherService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,8 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class InterviewApplication {
 
-    @Autowired
-    private QuoteService quoteService;
+    private static final Logger log = LoggerFactory.getLogger(InterviewApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(InterviewApplication.class, args);
@@ -25,9 +25,9 @@ public class InterviewApplication {
     }
 
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+    public CommandLineRunner run(WeatherService soapConnector) throws Exception {
         return args -> {
-            quoteService.getQuote();
+            soapConnector.callWebService();
         };
     }
 }
