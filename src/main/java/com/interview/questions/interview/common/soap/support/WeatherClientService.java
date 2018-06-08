@@ -29,13 +29,14 @@ public class WeatherClientService extends WebServiceGatewaySupport {
     public String celsiusToFahrenheit(String celsius) {
         String fahrenheit = "";
         CelsiusToFahrenheitResponse response;
+        SoapActionCallback callBackUrl = new SoapActionCallback(soapAction);
 
         CelsiusToFahrenheit request = new CelsiusToFahrenheit();
         request.setCelsius(celsius);
 
         try {
             response = (CelsiusToFahrenheitResponse) getWebServiceTemplate()
-                    .marshalSendAndReceive(payLoadUrl, request, new SoapActionCallback(soapAction));
+                    .marshalSendAndReceive(payLoadUrl, request, callBackUrl);
             fahrenheit = response.getCelsiusToFahrenheitResult();
         } catch (Exception e) {
             log.error("celsiusToFahrenheit", e);
