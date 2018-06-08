@@ -1,6 +1,6 @@
 package com.interview.questions.interview;
 
-import com.interview.questions.interview.common.soap.support.WeatherService;
+import com.interview.questions.interview.common.soap.support.WeatherClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -25,9 +25,8 @@ public class InterviewApplication {
     }
 
     @Bean
-    public CommandLineRunner run(WeatherService soapConnector) throws Exception {
+    public CommandLineRunner run(WeatherClientService soapConnector) throws Exception {
         return args -> {
-            soapConnector.callWebService();
         };
     }
 }

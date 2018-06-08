@@ -1,6 +1,6 @@
 package com.interview.questions.interview.common;
 
-import com.interview.questions.interview.common.soap.support.WeatherService;
+import com.interview.questions.interview.common.soap.support.WeatherClientService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -16,8 +16,8 @@ public class TemparatureSoapClientConfig {
     }
 
     @Bean
-    public WeatherService weatherSoapClient(Jaxb2Marshaller marshaller) {
-        WeatherService client = new WeatherService();
+    public WeatherClientService weatherSoapClient(Jaxb2Marshaller marshaller) {
+        WeatherClientService client = new WeatherClientService();
         client.setDefaultUri("https://www.w3schools.com/xml/tempconvert.asmx?WSDL");
         client.setMarshaller(marshaller);
         client.setUnmarshaller(marshaller);

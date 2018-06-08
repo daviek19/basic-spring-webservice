@@ -48,6 +48,7 @@
             <version>2.9.3</version>
             <type>jar</type>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
@@ -74,7 +75,7 @@
                 </executions>
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>temp_convert.wsdl</generatePackage>
+                    <generatePackage>tempconvert.wsdl</generatePackage>
                     <schemas>
                         <schema>
                             <url>https://www.w3schools.com/xml/tempconvert.asmx?WSDL</url>
