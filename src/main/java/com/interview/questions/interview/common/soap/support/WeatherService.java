@@ -13,6 +13,9 @@ public class WeatherService extends WebServiceGatewaySupport {
 
     public void callWebService() {
 
+        //search for operation name="xxx" and soap:operation soapAction
+        //net example try out this
+        //https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php?wsdl
         CelsiusToFahrenheit request = new CelsiusToFahrenheit();
         request.setCelsius("10");
 
