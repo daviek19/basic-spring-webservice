@@ -2,6 +2,7 @@ package com.interview.questions.interview.common.soap.support;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 import tempconvert.wsdl.CelsiusToFahrenheit;
@@ -14,8 +15,10 @@ public class WeatherClientService extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(WeatherClientService.class);
 
-    public static final String SOAP_ACTION = "https://www.w3schools.com/xml/CelsiusToFahrenheit";
-    public static final String PAY_LOAD_URL = "https://www.w3schools.com/xml/tempconvert.asmx?WSDL";
+    @Value("${temparature_soap_action}")
+    private String soapAction;
+    @Value("${temparature_payload_url}")
+    public String payLoadUrl;
 
     /**
      * Converts celsius to fahrenheit
@@ -32,7 +35,7 @@ public class WeatherClientService extends WebServiceGatewaySupport {
 
         try {
             response = (CelsiusToFahrenheitResponse) getWebServiceTemplate()
-                    .marshalSendAndReceive(PAY_LOAD_URL, request, new SoapActionCallback(SOAP_ACTION));
+                    .marshalSendAndReceive(payLoadUrl, request, new SoapActionCallback(soapAction));
             fahrenheit = response.getCelsiusToFahrenheitResult();
         } catch (Exception e) {
             log.error("celsiusToFahrenheit", e);
@@ -40,5 +43,4 @@ public class WeatherClientService extends WebServiceGatewaySupport {
 
         return fahrenheit;
     }
-
 }
