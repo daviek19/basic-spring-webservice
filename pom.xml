@@ -68,20 +68,38 @@
                 <version>0.13.1</version>
                 <executions>
                     <execution>
+                        <id>schema1-generate</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>tempconvert.wsdl</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>https://www.w3schools.com/xml/tempconvert.asmx?WSDL</url>
+                                </schema>
+                            </schemas>
+                        </configuration>
+                    </execution>
+                    
+                    <execution>
+                        <id>schema2-generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/resources/schema/wsdl</schemaDirectory>
+                            <schemaIncludes>
+                                <include>ndfdXMLserver.wsdl</include>
+                            </schemaIncludes>
+                            <generatePackage>ndfdXML.wsdl</generatePackage>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc2</generateDirectory>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>tempconvert.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>https://www.w3schools.com/xml/tempconvert.asmx?WSDL</url>
-                        </schema>
-                    </schemas>
-                </configuration>
+           
+           
             </plugin>
         </plugins>
         
